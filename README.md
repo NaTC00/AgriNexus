@@ -80,17 +80,20 @@ Ogni servizio possiede una responsabilità funzionale ben definita, un proprio m
 
 🚧 **In fase di avvio.** Lo sviluppo procede in modo incrementale: ogni microservizio viene introdotto con il proprio modello di dominio, la propria persistenza e i propri contratti, verificando di volta in volta i flussi distribuiti, la gestione degli errori e la consistenza dei dati.
 
+Lo stato corrente e la prossima attività sono tracciati in [`docs/DIARIO.md`](docs/DIARIO.md); la pianificazione operativa vive nel GitHub Project del repository.
+
 ### Roadmap
 
 - [ ] Definizione dei bounded context e dei contratti di integrazione
 - [ ] Impianto della solution e delle convenzioni di progetto (Clean Architecture, cross-cutting concerns)
+- [ ] Microservizio **Authorization** — utenti, ruoli, permessi, emissione e validazione dei JWT
+- [ ] API Gateway e propagazione dell'identità tra i servizi
 - [ ] Microservizio **Anagrafiche** — beneficiari, aziende agricole, fascicoli
 - [ ] Microservizio **Gestione territoriale** — particelle, superfici, conduzioni
 - [ ] Microservizio **Domande e finanziamenti**
 - [ ] Microservizio **Procedimenti amministrativi** — istruttorie e workflow
 - [ ] Event bus e integration event tra i servizi
 - [ ] Gestione documentale e firma digitale
-- [ ] Autenticazione, autorizzazione e API gateway
 - [ ] Containerizzazione e orchestrazione dell'ambiente locale
 - [ ] Osservabilità: logging strutturato, tracing, health check
 - [ ] Pipeline CI/CD
@@ -118,11 +121,20 @@ cd AgriNexus
 
 ```
 AgriNexus/
-├── src/            # Microservizi e librerie condivise
-├── tests/          # Unit, integration ed end-to-end test
-├── docs/           # Documentazione architetturale e di dominio
-└── deploy/         # Compose, manifest e configurazioni di deploy
+├── src/              # Microservizi e librerie condivise
+├── tests/            # Unit, integration ed end-to-end test
+├── docs/
+│   ├── adr/          # Architecture Decision Records
+│   └── DIARIO.md     # Stato di avanzamento e prossimi passi
+└── deploy/           # Compose, manifest e configurazioni di deploy
 ```
+
+---
+
+## Documentazione
+
+- [`docs/adr/`](docs/adr/) — le decisioni architetturali prese, con il contesto e le alternative valutate
+- [`docs/DIARIO.md`](docs/DIARIO.md) — dove si trova il progetto adesso e qual è il passo successivo
 
 ---
 
