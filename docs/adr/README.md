@@ -36,4 +36,5 @@ Gli ADR non si cancellano e non si riscrivono: sono un registro storico. Una dec
 
 | # | Decisione | Stato | Data |
 |---|---|---|---|
-| — | _nessuna decisione registrata_ | | |
+| 0001 | [Tre bounded context iniziali, un database per servizio](0001-bounded-context-iniziali.md) | Accettata | 2026-11-15 |
+| 0002 | [Stile di modellazione scelto per contesto](0002-stile-di-modellazione-per-contesto.md) | Accettata | 2026-11-15 |
