@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\AgriNexus.Authorization.Domain\AgriNexus.Authorization.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
