@@ -15,6 +15,8 @@ public static class DependencyInjection
         services.AddDbContext<AuthorizationDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("Authorization")));
 
+        services.AddHealthChecks().AddDbContextCheck<AuthorizationDbContext>();
+
         return services;
     }
 }
