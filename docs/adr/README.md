@@ -38,3 +38,5 @@ Gli ADR non si cancellano e non si riscrivono: sono un registro storico. Una dec
 |---|---|---|---|
 | 0001 | [Tre bounded context iniziali, un database per servizio](0001-bounded-context-iniziali.md) | Accettata | 2026-11-15 |
 | 0002 | [Stile di modellazione scelto per contesto](0002-stile-di-modellazione-per-contesto.md) | Accettata | 2026-11-15 |
+| 0003 | [Modello dei permessi: RBAC con ambito](0003-modello-dei-permessi.md) | Accettata | 2026-11-22 |
+| 0004 | [PostgreSQL come database dei servizi](0004-postgresql-come-database.md) | Accettata | 2026-11-22 |

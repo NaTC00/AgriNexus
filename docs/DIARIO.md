@@ -10,15 +10,27 @@ Questo file risponde a tre domande e basta. La pianificazione operativa (task, s
 
 ## Stato attuale
 
-Repository inizializzato. Nessun codice ancora: si sta definendo l'impianto prima di scrivere il primo microservizio.
+Stiamo costruendo Authorization, il primo microservizio. Il progetto è su .NET 10 e il database
+PostgreSQL viene creato dalla prima migration.
 
 ## Prossima attività
 
-Definire i bounded context e i contratti di integrazione tra i domini, così da fissare i confini prima di aprire la solution.
+Aggiungere l'endpoint di health che verifica anche il collegamento al database.
 
 ---
 
 ## Log
+
+### 2026-11-22 — Impianto di Authorization e modello dei permessi
+
+Abbiamo scelto RBAC con ambito (ADR 0003) e creato la solution con i progetti Domain,
+Application, Infrastructure e Host, insieme alle entità e alla configurazione di EF Core.
+Nota: l'ambito è formato da tipo e valore, e un utente o un ruolo con assegnazioni non si può
+cancellare, così i diritti non vengono tolti per errore.
+Nota: prima della migration passiamo a PostgreSQL (ADR 0004) e a .NET 10, perché .NET 9 non è
+più supportato dal 10 novembre 2026.
+
+Issue #3 · branch `feature/auth-impianto-solution-e-modello-dati`
 
 ### 2026-11-15 — Inizializzazione del repository
 

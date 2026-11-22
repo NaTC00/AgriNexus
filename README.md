@@ -49,12 +49,12 @@ Ogni servizio possiede una responsabilità funzionale ben definita, un proprio m
 ## Stack tecnologico
 
 **Piattaforma**
-- .NET / C#
+- .NET 10 (LTS) / C#
 - ASP.NET Core — API REST documentate con OpenAPI
 
 **Persistenza**
 - Entity Framework Core
-- SQL Server (un database indipendente per microservizio)
+- PostgreSQL (un database indipendente per microservizio, [ADR 0004](docs/adr/0004-postgresql-come-database.md))
 
 **Messaggistica e integrazione**
 - RabbitMQ — comunicazione event-driven
@@ -102,9 +102,9 @@ Lo stato corrente e la prossima attività sono tracciati in [`docs/DIARIO.md`](d
 
 ## Requisiti
 
-- [.NET SDK](https://dotnet.microsoft.com/download) 8.0 o superiore
+- [.NET SDK](https://dotnet.microsoft.com/download) 10.0
 - [Docker](https://www.docker.com/) e Docker Compose
-- SQL Server e RabbitMQ (forniti via container nell'ambiente di sviluppo locale)
+- PostgreSQL e RabbitMQ (forniti via container nell'ambiente di sviluppo locale)
 
 ## Avvio in locale
 
