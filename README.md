@@ -86,7 +86,7 @@ Lo stato corrente e la prossima attività sono tracciati in [`docs/DIARIO.md`](d
 
 - [ ] Definizione dei bounded context e dei contratti di integrazione
 - [ ] Impianto della solution e delle convenzioni di progetto (Clean Architecture, cross-cutting concerns)
-- [ ] Microservizio **Authorization** — utenti, ruoli, permessi, emissione e validazione dei JWT
+- [ ] Microservizio **Authorization** — utenti, ruoli, permessi, emissione e validazione dei JWT *(in corso: modello dati e database pronti)*
 - [ ] API Gateway e propagazione dell'identità tra i servizi
 - [ ] Microservizio **Anagrafiche** — beneficiari, aziende agricole, fascicoli
 - [ ] Microservizio **Gestione territoriale** — particelle, superfici, conduzioni
@@ -108,12 +108,42 @@ Lo stato corrente e la prossima attività sono tracciati in [`docs/DIARIO.md`](d
 
 ## Avvio in locale
 
-> Le istruzioni verranno completate con l'introduzione dei primi microservizi.
+Per ora c'è un solo servizio, Authorization. Per avviarlo serve anche lo strumento `dotnet-ef`, che crea il database a partire dalle migration:
+
+```bash
+dotnet tool install --global dotnet-ef --version 10.0.15
+```
+
+Si parte clonando il repository e avviando PostgreSQL in un container:
 
 ```bash
 git clone https://github.com/NaTC00/AgriNexus.git
 cd AgriNexus
+
+docker run -d --name agrinexus-postgres \
+  -e POSTGRES_PASSWORD='<password>' \
+  -p 5432:5432 postgres:18
 ```
+
+La stringa di connessione non sta nel repository ma negli user-secrets del progetto Host:
+
+```bash
+dotnet user-secrets set "ConnectionStrings:Authorization" \
+  "Host=localhost;Port=5432;Database=agrinexus_authorization;Username=postgres;Password=<password>" \
+  --project src/Authorization/AgriNexus.Authorization.Host
+```
+
+Poi si crea il database applicando le migration e si avvia il servizio:
+
+```bash
+dotnet ef database update \
+  --project src/Authorization/AgriNexus.Authorization.Infrastructure \
+  --startup-project src/Authorization/AgriNexus.Authorization.Host
+
+dotnet run --project src/Authorization/AgriNexus.Authorization.Host
+```
+
+Per verificare che sia tutto a posto, `http://localhost:5248/health` risponde `Healthy` se il servizio riesce a collegarsi al database e `Unhealthy` (con codice 503) se non ci riesce.
 
 ---
 

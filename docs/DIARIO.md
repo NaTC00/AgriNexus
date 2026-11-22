@@ -10,12 +10,13 @@ Questo file risponde a tre domande e basta. La pianificazione operativa (task, s
 
 ## Stato attuale
 
-Stiamo costruendo Authorization, il primo microservizio. Il progetto è su .NET 10 e il database
-PostgreSQL viene creato dalla prima migration.
+Authorization ha il suo modello dati su PostgreSQL, creato dalla prima migration, e risponde
+su `/health`. Non emette ancora token e non ci sono ancora test.
 
 ## Prossima attività
 
-Aggiungere l'endpoint di health che verifica anche il collegamento al database.
+Emissione dei token in Authorization, decidendo prima cosa contiene il JWT (lasciato aperto
+dall'ADR 0003).
 
 ---
 
@@ -24,7 +25,8 @@ Aggiungere l'endpoint di health che verifica anche il collegamento al database.
 ### 2026-11-22 — Impianto di Authorization e modello dei permessi
 
 Abbiamo scelto RBAC con ambito (ADR 0003) e creato la solution con i progetti Domain,
-Application, Infrastructure e Host, insieme alle entità e alla configurazione di EF Core.
+Application, Infrastructure e Host, con le entità, la prima migration e l'endpoint di health
+che controlla anche il collegamento al database.
 Nota: l'ambito è formato da tipo e valore, e un utente o un ruolo con assegnazioni non si può
 cancellare, così i diritti non vengono tolti per errore.
 Nota: prima della migration passiamo a PostgreSQL (ADR 0004) e a .NET 10, perché .NET 9 non è
